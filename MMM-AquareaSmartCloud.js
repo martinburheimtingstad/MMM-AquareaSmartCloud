@@ -72,6 +72,10 @@ Module.register("MMM-AquareaSmartCloud",{
 			return wrapper;
 		}
 
+		var operationIcon = document.createElement('img');
+		operationIcon.src = "https://aquarea-smart.panasonic.com/remote/images/heat_pump.png";
+		operationIcon.style = "width: 25px; height: 25px;"
+
 		var outdoorDiv = document.createElement("div");
 		outdoorDiv.align = 'center';
 
@@ -80,7 +84,7 @@ Module.register("MMM-AquareaSmartCloud",{
 		outdoorIcon.width = 50;
 		outdoorIcon.height = 50;
 		var outdoorTemperature = document.createElement("div");
-		outdoorTemperature.innerHTML = this.deviceData.status[0].outdoorNow+'&deg;C';
+		outdoorTemperature.innerHTML = this.deviceData.status[0].outdoorNow+'&deg;';
 
 		outdoorDiv.appendChild(outdoorIcon);
 		outdoorDiv.appendChild(outdoorTemperature);
@@ -95,9 +99,12 @@ Module.register("MMM-AquareaSmartCloud",{
 		tankIcon.width = 100;
 		tankIcon.height = 100;
 		var tankTemperature = document.createElement("div");
-		tankTemperature.innerHTML = this.deviceData.status[0].tankStatus[0].temparatureNow+'&deg;C';
+		tankTemperature.innerHTML = this.deviceData.status[0].tankStatus[0].temparatureNow+'&deg;';
 
 		tankDiv.appendChild(tankIcon);
+		if(this.deviceData.status[0].direction === 2) {
+			tankDiv.appendChild(operationIcon);
+		}
 		tankDiv.appendChild(tankTemperature);
 
 
@@ -109,8 +116,12 @@ Module.register("MMM-AquareaSmartCloud",{
 		zoneIcon.width = 100;
 		zoneIcon.height = 100;
 
+		if(this.deviceData.status[0].direction === 1) {
+			zoneDiv.appendChild(operationIcon);
+		}
+
 		var zoneTemperature = document.createElement("div");
-		zoneTemperature.innerHTML = this.deviceData.status[0].zoneStatus[0].temparatureNow+'&deg;C';
+		zoneTemperature.innerHTML = this.deviceData.status[0].zoneStatus[0].temparatureNow+'&deg;';
 		
 		zoneDiv.appendChild(zoneIcon);
 		zoneDiv.appendChild(zoneTemperature);
