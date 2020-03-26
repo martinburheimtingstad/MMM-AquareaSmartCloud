@@ -98,7 +98,10 @@ Module.register("MMM-AquareaSmartCloud",{
 		tankIcon.src = 'https://aquarea-smart.panasonic.com/remote/images/icon_tank.png';
 		tankIcon.width = 100;
 		tankIcon.height = 100;
+		tankIcon.style = "filter: grayscale(50%)";
 		var tankTemperature = document.createElement("div");
+		tankTemperature.classList.add("medium");
+		tankTemperature.classList.add("light");
 		tankTemperature.innerHTML = this.deviceData.status[0].tankStatus[0].temparatureNow+'&deg;';
 
 		tankDiv.appendChild(tankIcon);
@@ -115,12 +118,16 @@ Module.register("MMM-AquareaSmartCloud",{
 		zoneIcon.src = 'https://aquarea-smart.panasonic.com/remote/images/icon_sun.png';
 		zoneIcon.width = 100;
 		zoneIcon.height = 100;
+		zoneIcon.style = "filter: grayscale(50%)";
 
 		if(this.deviceData.status[0].direction === 1) {
 			zoneDiv.appendChild(operationIcon);
 		}
 
 		var zoneTemperature = document.createElement("div");
+		zoneTemperature.classList.add("medium");
+		zoneTemperature.classList.add("light");
+
 		zoneTemperature.innerHTML = this.deviceData.status[0].zoneStatus[0].temparatureNow+'&deg;';
 		
 		zoneDiv.appendChild(zoneIcon);
