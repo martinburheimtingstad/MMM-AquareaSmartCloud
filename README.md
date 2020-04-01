@@ -1,13 +1,9 @@
-# Module: MMM-Tesla2 (early prototype)
-The `MMM-Tesla2` module is a <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a> addon. This module displays some of your <a href="https://www.tesla.com">Tesla's</a> data on your Mirror.
+# Module: MMM-AquareaSmartCloud
+The `MMM-AquareaSmartCloud` module is a <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a> addon. This module displays some of your data from a Panasonic AQUAREA Cloud Adapter on your Mirror.
 
-This is just an early prototype, supporting one vehicle only - displaying the battery state graphically, as well as the range in kms. It uses
-the unofficial Tesla JSON API from https://timdorr.docs.apiary.io
-
-![alt Preview](https://raw.githubusercontent.com/janhenrik/pics/master/tesla.png)
 
 ## Installing the module
-run `git clone https://github.com/martinburheimtingstad/MMM-Tesla2` from inside your `MagicMirror/modules` folder. Then run `npm install` to install dependencies.
+run `git clone https://github.com/martinburheimtingstad/MMM-AquareaSmartCloud` from inside your `MagicMirror/modules` folder. Then run `npm install` to install dependencies.
 
 
 ## Using the module
@@ -15,18 +11,14 @@ To use this module, add it to the modules array in the `config/config.js` file:
 ````javascript
 modules: [
 		{
-			module: 'MMM-Tesla',
-			position: 'bottom_right',	// This can be any of the regions.
-									// Best results in one of the side regions like: top_left
+			module: 'MMM-AquareaSmartCloud',
+			position: 'bottom_right',
 			config: {
-				// See 'Configuration options' for more information.
-				email: 'nn@example.com', 
-				password: "XXXXXX",
-				client_id: 'XXXXX',
-				client_secret: 'XXXXXX',
-				vehicle_id: 'XXXXX',
-				google_api_key: 'XXXXX',
-				refreshInterval: 1000 * 60 * 10 // 60 minutes
+					email: "user@domain.tld",
+					password: "password",
+					device_id: "XXXXXXXXXX",
+					refreshInterval: 1000 * 60 * 60,
+					updateInterval: 1000 * 60, // optional, default every 10 seconds
 			}
 		}
 ]
@@ -47,56 +39,44 @@ The following properties can be configured:
 	<tbody>
 		<tr>
 			<td><code>email</code></td>
-			<td>Your tesla.com email adress, matching the owner's login information for https://my.teslamotors.com/user/login. <br>
-				<br><b>Example:</b> <code>elon@tesla.com</code>
+			<td>Your Panasonic Smartcloud email adress<br></td>
+			<td>
+				<br><b>Example:</b> <code>john.smith@domain.com</code>
 				<br> This value is <b>REQUIRED</b>
 			</td>
 		</tr>
 		<tr>
 			<td><code>password</code></td>
-			<td>Your tesla.com password, matching the owner's login information for https://my.teslamotors.com/user/login.<br>
+			<td>Your Panasonic Smartcloud password<br></td>
+			<td><br>
 				<br><b>Example:</b> <code>password</code>
 				<br> This value is <b>REQUIRED</b>
 			</td>
 		</tr>
 		<tr>
-			<td><code>client_id</code></td>
-			<td>The current client_id is available <a href="http://pastebin.com/YiLPDggh">here</a>.
+			<td><code>device_id</code></td>
+			<td>Your heat pump device ID</td>
 			<td><br>
-				<br><b>Example:</b> <code>abc</code>
-				<br> This value is <b>REQUIRED</b>
-			</td>
-		</tr>
-		<tr>
-			<td><code>client_secret</code></td>
-			<td>The current client_secret is available <a href="http://pastebin.com/YiLPDggh">here</a>.
-			<td><br>
-				<br><b>Example:</b> <code>abc</code>
-				<br> This value is <b>REQUIRED</b>
-			</td>
-		</tr>
-		<tr>
-			<td><code>vehicle_id</code></td>
-			<td>The vehicle_id can be found calling https://owner-api.teslamotors.com/api/1/vehicles with e.g. curl with an OAuth-token attached. Documentation <a href="https://timdorr.docs.apiary.io/#reference/vehicles/vehicle-collection/list-all-vehicles">here</a>. Or simply install the excellent <a href="https://github.com/hjespers/teslams">teslams command line client</a> and run <b>teslacmd vehicles</b>... and get the vehicle_id from there.
-			<td><br>
-				<br><b>Example:</b> <code>abc</code>
-				<br> This value is <b>REQUIRED</b>
-			</td>
-		</tr>
-		<tr>
-			<td><code>google_api_key</code></td>
-			<td>You will need a Google API key, can be generated <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">here</a>.
-			<td><br>
-				<br><b>Example:</b> <code>abc</code>
+				<br><b>Example:</b> <code>79001434541304300000084453731303933831007B1313831373030343453731534369770210000</code>
 				<br> This value is <b>REQUIRED</b>
 			</td>
 		</tr>
 		<tr>
 			<td><code>refreshInterval</code></td>
-			<td>How often this refreshes<br>
-				<br><b>Example:</b> <code>60000</code>
-				<br> I'm not stressing the service, so once an hour is default.
-				<br><b>Default value:</b> <code>600000</code>
+			<td>How often data is fetched from Panasonic (ms)<br>
+			<td><br>
+				<br><b>Example:</b> <code>3600000</code>
+				<br><b>Default value:</b> <code>300000</code>
+				<br> This value is <b>OPTIONAL</b>
+			</td>
+		</tr>
+		<tr>
+			<td><code>updateInterval</code></td>
+			<td>How often the UI is updated (ms)</td>
+			<td><br>
+				<br><b>Example:</b> <code>3600000</code>
+				<br><b>Default value:</b> <code>10000</code>
+				<br> This value is <b>OPTIONAL</b>
 			</td>
 		</tr>
 	</tbody>

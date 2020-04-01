@@ -110,7 +110,6 @@ Module.register("MMM-AquareaSmartCloud",{
 		}
 		tankDiv.appendChild(tankTemperature);
 
-
 		var zoneDiv = document.createElement("div");
 		zoneDiv.align = 'center';
 
