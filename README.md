@@ -32,8 +32,9 @@ The following properties can be configured:
 	<!-- why, markdown... -->
 	<thead>
 		<tr>
-			<th>Option</th>
-			<th width="100%">Description</th>
+			<th width="25%">Option</th>
+			<th width="25%">Description</th>
+			<th width="50%">Example values</th>
 		</tr>
 	<thead>
 	<tbody>
