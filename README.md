@@ -1,5 +1,5 @@
 # Module: MMM-AquareaSmartCloud
-The `MMM-AquareaSmartCloud` module is a <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a> addon. This module displays some of your data from a Panasonic AQUAREA Cloud Adapter on your Mirror.
+The `MMM-AquareaSmartCloud` module is a <a href="https://github.com/MichMich/MagicMirror">MagicMirror²</a> addon. This module displays some of your data from a Panasonic AQUAREA Cloud Adapter on your Mirror.
 
 
 ## Installing the module

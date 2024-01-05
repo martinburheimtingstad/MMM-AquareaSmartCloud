@@ -1,7 +1,7 @@
 {
   "name": "mmm-aquareasmartcloud",
   "version": "1.0.0",
-  "description": "A prototype of a simple MagicMirror module for the Panasonic Aquarea Smart Cloud",
+  "description": "A prototype of a simple MagicMirror² module for the Panasonic Aquarea Smart Cloud.",
   "main": "MMM-AquareaSmartCloud.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
