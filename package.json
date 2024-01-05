@@ -1,7 +1,7 @@
 {
   "name": "mmm-aquareasmartcloud",
   "version": "1.0.0",
-  "description": "A prototype of a simple MagicMirror² module for the Panasonic Aquarea Smart Cloud.",
+  "description": "A simple MagicMirror² module for the Panasonic Aquarea Smart Cloud.",
   "repository": {
     "type": "git",
     "url": "https://github.com/martinburheimtingstad/MMM-AquareaSmartCloud"
@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Martin Burheim Tingstad",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "request": "^2.88.2"
   }
