@@ -1,13 +1,21 @@
 # Module: MMM-AquareaSmartCloud
-The `MMM-AquareaSmartCloud` module is a <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a> addon. This module displays some of your data from a Panasonic AQUAREA Cloud Adapter on your Mirror.
 
+The `MMM-AquareaSmartCloud` module is a [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) addon. This module displays some of your data from a [https://www.aircon.panasonic.eu/DE_de/aquareaplus/aquarea-smart-cloud/](Panasonic Aquarea Cloud) Adapter on your Mirror.
+
+## Screenshot
+
+![Screenshot](example.png)
 
 ## Installing the module
-run `git clone https://github.com/martinburheimtingstad/MMM-AquareaSmartCloud` from inside your `MagicMirror/modules` folder. Then run `npm install` to install dependencies.
 
+- Run `git clone https://github.com/martinburheimtingstad/MMM-AquareaSmartCloud` from inside your `MagicMirror/modules` folder.
+- Then go into the modules direcory: `cd MMM-AquareaSmartCloud`.
+- Then run `npm install` to install dependencies.
 
 ## Using the module
+
 To use this module, add it to the modules array in the `config/config.js` file:
+
 ````javascript
 modules: [
 		{
@@ -25,8 +33,8 @@ modules: [
 ````
 
 ## Configuration options
-The following properties can be configured:
 
+The following properties can be configured:
 
 <table width="100%">
 	<!-- why, markdown... -->
