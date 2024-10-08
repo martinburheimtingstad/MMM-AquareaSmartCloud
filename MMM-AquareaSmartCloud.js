@@ -1,11 +1,13 @@
-/* MagicMirror²
+/* global Module */
+
+/* Magic Mirror
  * Module: MMM-AquareaSmartCloud
  *
  * By Martin Burheim Tingstad
  * MIT Licensed.
  */
 
-Module.register("MMM-AquareaSmartCloud", {
+Module.register("MMM-AquareaSmartCloud",{
 
 	defaults: {
 		refreshInterval: 1000 * 60 * 5, // refresh every 5 minutes
@@ -17,8 +19,8 @@ Module.register("MMM-AquareaSmartCloud", {
 		retryDelay: 2500
 	},
 
-	start () {
-		console.log(`Starting module: ${this.name}`);
+	start: function() {
+		console.log('Starting module: ' + this.name);
 		var self = this;
 		var deviceData = null;
 		var dataNotification = null;
@@ -28,21 +30,23 @@ Module.register("MMM-AquareaSmartCloud", {
 
 		// Schedule update timer.
 		this.sendSocketNotification("CONFIG", this.config);
-		console.log("Sending socket notification: CONFIG");
+		console.log('Sending socket notification: CONFIG');
 
-		setInterval(function () {
+		setInterval(function() {
 			self.updateDom();
 		}, this.config.updateInterval);
 	},
 
 	// Define required scripts.
-	getScripts () {
+	getScripts: function() {
 		return [];
 	},
 
-	getStyles () {
-		return [];
-	},
+	getStyles: function() {
+        	return [
+            	'MMM-AquareaSmartCloud.css'
+        	];
+    	},
 
 	/* scheduleUpdate()
 	 * Schedule next update.
@@ -50,81 +54,84 @@ Module.register("MMM-AquareaSmartCloud", {
 	 * argument delay number - Milliseconds before next update.
 	 *  If empty, this.config.updateInterval is used.
 	 */
-	scheduleUpdate (delay) {
+	scheduleUpdate: function(delay) {
 		var nextLoad = this.config.updateInterval;
 		if (typeof delay !== "undefined" && delay >= 0) {
 			nextLoad = delay;
 		}
+		nextLoad = nextLoad ;
 		var self = this;
-		setTimeout(function () {
+		setTimeout(function() {
 			self.getData();
 		}, nextLoad);
 	},
 
-	getDom () {
+	getDom: function() {
 		var wrapper = document.createElement("div");
+		wrapper.className = "aquarea-cell";
 
 		if (!this.loaded) {
-			wrapper.innerHTML = this.translate("LOADING");
+			wrapper.innerHTML = this.translate('LOADING');
 			return wrapper;
 		}
 
-		var operationIcon = document.createElement("img");
+		var operationIcon = document.createElement('img');
 		operationIcon.src = "https://aquarea-smart.panasonic.com/remote/images/heat_pump.png";
-		operationIcon.style = "width: 25px; height: 25px;";
+                operationIcon.className = "aquarea-cell";
+		operationIcon.style = "width: 50px; height: 50px; filter: brightness(0) invert(1);"
 
 		var outdoorDiv = document.createElement("div");
-		outdoorDiv.align = "center";
+		outdoorDiv.classList.add("aquarea-cell");
 
-		var outdoorIcon = document.createElement("img");
-		outdoorIcon.src = "https://aquarea-smart.panasonic.com/remote/images/outdoors.png";
-		outdoorIcon.width = 50;
-		outdoorIcon.height = 50;
+		var outdoorIcon = document.createElement('img');
+		outdoorIcon.src = 'https://aquarea-smart.panasonic.com/remote/images/outdoors.png';
+                outdoorIcon.style = "width: 100px; height: 100px;"
 		var outdoorTemperature = document.createElement("div");
-		outdoorTemperature.innerHTML = `${this.deviceData.status[0].outdoorNow}&deg;`;
+		outdoorTemperature.classList.add("large");
+		outdoorTemperature.classList.add("light");
+		outdoorTemperature.innerHTML = this.deviceData.status[0].outdoorNow+'&deg;';
 
 		outdoorDiv.appendChild(outdoorIcon);
 		outdoorDiv.appendChild(outdoorTemperature);
 
-
 		var tankDiv = document.createElement("div");
-		tankDiv.align = "center";
+                tankDiv.className = "aquarea-cell";
 
-		var tankIcon = document.createElement("img");
-		tankIcon.src = "https://aquarea-smart.panasonic.com/remote/images/icon_tank.png";
+		var tankIcon = document.createElement('img');
+		tankIcon.src = 'https://aquarea-smart.panasonic.com/remote/images/icon_tank.png';
 		tankIcon.width = 100;
 		tankIcon.height = 100;
 		tankIcon.style = "filter: grayscale(50%)";
 		var tankTemperature = document.createElement("div");
-		tankTemperature.classList.add("medium");
+		tankTemperature.classList.add("large");
 		tankTemperature.classList.add("light");
-		tankTemperature.innerHTML = `${this.deviceData.status[0].tankStatus[0].temparatureNow}&deg;`;
+		tankTemperature.innerHTML = this.deviceData.status[0].tankStatus[0].temparatureNow+'&deg;';
 
 		tankDiv.appendChild(tankIcon);
-		if (this.deviceData.status[0].direction === 2) {
+		if(this.deviceData.status[0].direction === 2) {
 			tankDiv.appendChild(operationIcon);
 		}
 		tankDiv.appendChild(tankTemperature);
 
 		var zoneDiv = document.createElement("div");
-		zoneDiv.align = "center";
+		zoneDiv.className = "aquarea-cell";
 
-		var zoneIcon = document.createElement("img");
-		zoneIcon.src = "https://aquarea-smart.panasonic.com/remote/images/icon_sun.png";
+		var zoneIcon = document.createElement('img');
+		zoneIcon.src = 'https://aquarea-smart.panasonic.com/remote/images/icon_sun.png';
 		zoneIcon.width = 100;
 		zoneIcon.height = 100;
 		zoneIcon.style = "filter: grayscale(50%)";
 
-		if (this.deviceData.status[0].direction === 1) {
+		if(this.deviceData.status[0].direction === 1) {
 			zoneDiv.appendChild(operationIcon);
 		}
 
 		var zoneTemperature = document.createElement("div");
-		zoneTemperature.classList.add("medium");
+		zoneTemperature.classList.add("large");
 		zoneTemperature.classList.add("light");
 
-		zoneTemperature.innerHTML = `${this.deviceData.status[0].zoneStatus[0].temparatureNow}&deg;`;
-
+		zoneTemperature.innerHTML = this.deviceData.status[0].zoneStatus[0].temparatureNow+'&deg;';
+		
 		zoneDiv.appendChild(zoneIcon);
 		zoneDiv.appendChild(zoneTemperature);
 
@@ -135,11 +142,11 @@ Module.register("MMM-AquareaSmartCloud", {
 		return wrapper;
 	},
 
-	processData (data) {
+	processData: function(data) {
 		var self = this;
 		this.deviceData = data;
 		if (this.loaded === false) {
-			self.updateDom(self.config.animationSpeed);
+			 self.updateDom(self.config.animationSpeed);
 		}
 		this.loaded = true;
 
@@ -148,16 +155,16 @@ Module.register("MMM-AquareaSmartCloud", {
 		this.sendSocketNotification("DEVICE_DATA", data);
 	},
 
-	socketNotificationReceived (notification, payload) {
+ 	socketNotificationReceived: function(notification, payload) {
 		if (notification === "STARTED") {
 			this.updateDom();
 		}
-		else if (notification === "DEVICE_DATA") {
+		else if(notification === "DEVICE_DATA") {
 			// set dataNotification
 			this.dataNotification = payload;
 			this.processData(payload);
 			this.updateDom();
 		}
-	}
+	},
 
 });
