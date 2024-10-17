@@ -25,8 +25,8 @@ modules: [
 					email: "user@domain.tld",
 					password: "password",
 					device_id: "XXXXXXXXXX",
-					refreshInterval: 1000 * 60 * 60,
-					updateInterval: 1000 * 60, // optional, default every 10 seconds
+					refreshInterval: 1000 * 60 * 30,
+					updateInterval: 1000 * 60 * 30, // optional, default every 10 seconds
 			}
 		}
 ]
@@ -64,18 +64,17 @@ The following properties can be configured:
 		</tr>
 		<tr>
 			<td><code>device_id</code></td>
-			<td>Your heat pump device ID</td>
+			<td>Your heat pump device ID. If not supplied we will show the first device</td>
 			<td><br>
 				<br><b>Example:</b> <code>79001434541304300000084453731303933831007B1313831373030343453731534369770210000</code>
-				<br> This value is <b>REQUIRED</b>
 			</td>
 		</tr>
 		<tr>
 			<td><code>refreshInterval</code></td>
 			<td>How often data is fetched from Panasonic (ms)<br>
 			<td><br>
-				<br><b>Example:</b> <code>3600000</code>
-				<br><b>Default value:</b> <code>300000</code>
+				<br><b>Example:</b> <code>1800000</code>
+				<br><b>Default value:</b> <code>1800000</code>
 				<br> This value is <b>OPTIONAL</b>
 			</td>
 		</tr>
@@ -83,8 +82,8 @@ The following properties can be configured:
 			<td><code>updateInterval</code></td>
 			<td>How often the UI is updated (ms)</td>
 			<td><br>
-				<br><b>Example:</b> <code>3600000</code>
-				<br><b>Default value:</b> <code>10000</code>
+				<br><b>Example:</b> <code>1800000</code>
+				<br><b>Default value:</b> <code>1800000</code>
 				<br> This value is <b>OPTIONAL</b>
 			</td>
 		</tr>
