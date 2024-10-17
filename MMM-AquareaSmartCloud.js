@@ -10,8 +10,8 @@
 Module.register("MMM-AquareaSmartCloud",{
 
 	defaults: {
-		refreshInterval: 1000 * 60 * 5, // refresh every 5 minutes
-		updateInterval: 1000 * 15, // update every 15 seconds
+		refreshInterval: 1000 * 60 * 15, // refresh every 15 minutes
+		updateInterval: 1000 * 60 * 15, // update every 15 minutes
 		timeFormat: config.timeFormat,
 		lang: config.language,
 
@@ -89,7 +89,7 @@ Module.register("MMM-AquareaSmartCloud",{
 		var outdoorTemperature = document.createElement("div");
 		outdoorTemperature.classList.add("large");
 		outdoorTemperature.classList.add("light");
-		outdoorTemperature.innerHTML = this.deviceData.status[0].outdoorNow+'&deg;';
+		outdoorTemperature.innerHTML = this.deviceData.outdoorNow+'&deg;';
 
 		outdoorDiv.appendChild(outdoorIcon);
 		outdoorDiv.appendChild(outdoorTemperature);
@@ -105,10 +105,10 @@ Module.register("MMM-AquareaSmartCloud",{
 		var tankTemperature = document.createElement("div");
 		tankTemperature.classList.add("large");
 		tankTemperature.classList.add("light");
-		tankTemperature.innerHTML = this.deviceData.status[0].tankStatus[0].temparatureNow+'&deg;';
+		tankTemperature.innerHTML = this.deviceData.tankStatus[0].temparatureNow+'&deg;';
 
 		tankDiv.appendChild(tankIcon);
-		if(this.deviceData.status[0].direction === 2) {
+		if(this.deviceData.direction === 2) {
 			tankDiv.appendChild(operationIcon);
 		}
 		tankDiv.appendChild(tankTemperature);
@@ -122,7 +122,7 @@ Module.register("MMM-AquareaSmartCloud",{
 		zoneIcon.height = 100;
 		zoneIcon.style = "filter: grayscale(50%)";
 
-		if(this.deviceData.status[0].direction === 1) {
+		if(this.deviceData.direction === 1) {
 			zoneDiv.appendChild(operationIcon);
 		}
 
@@ -130,7 +130,7 @@ Module.register("MMM-AquareaSmartCloud",{
 		zoneTemperature.classList.add("large");
 		zoneTemperature.classList.add("light");
 
-		zoneTemperature.innerHTML = this.deviceData.status[0].zoneStatus[0].temparatureNow+'&deg;';
+		zoneTemperature.innerHTML = this.deviceData.zoneStatus[0].temparatureNow+'&deg;';
 		
 		zoneDiv.appendChild(zoneIcon);
 		zoneDiv.appendChild(zoneTemperature);

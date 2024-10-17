@@ -19,6 +19,6 @@
   "author": "Martin Burheim Tingstad",
   "license": "MIT",
   "dependencies": {
-    "request": "^2.88.2"
+    "@hernas/homebridge-panasonic-heat-pump": "^2.0.3"
   }
 }
